@@ -11,7 +11,6 @@ with open('candidates.json', 'r', encoding='utf-8') as file:
         b = candidate['name'] + ' - ' + '\n' + candidate['position'] + '\n' + candidate['skills'] + '\n'
         candidate_list.append(b)
 
-
 app = Flask(__name__)
 
 
@@ -23,7 +22,8 @@ def page_index():
 @app.route('/candidate/<int:id>')
 def page_candidate(id):
     candidate = candidates[id - 1]
-    return '<img src="' + candidate['picture'] + '">' + '<pre>' + candidate['name'] + ' - ' + '\n' + candidate['position'] + '\n' + candidate['skills'] + '\n' + '</pre>'
+    return '<img src="' + candidate['picture'] + '">' + '<pre>' + candidate['name'] + ' - ' + '\n' + candidate[
+        'position'] + '\n' + candidate['skills'] + '\n' + '</pre>'
 
 
 @app.route('/skills/<skill>')
@@ -33,7 +33,9 @@ def page_skill(skill):
         candidate_skills = candidate['skills'].split(', ')
         candidate_skills = [x.lower() for x in candidate_skills]
         if skill in candidate_skills:
-            candidate_str += '<pre>' + candidate['name'] + ' - ' + '\n' + candidate['position'] + '\n' + candidate['skills'] + '\n' + '</pre>'
+            candidate_str += '<pre>' + candidate['name'] + ' - ' + '\n' + candidate['position'] + '\n' + candidate[
+                'skills'] + '\n' + '</pre>'
     return candidate_str
+
 
 app.run()
